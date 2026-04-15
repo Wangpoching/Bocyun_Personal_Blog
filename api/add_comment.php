@@ -2,6 +2,9 @@
   require_once('../conn.php');
   require_once('../utils.php');
 
+  header("Access-Control-Allow-Origin: *");
+  header("Access-Control-Allow-Headers: Content-Type, X-User-Token, X-App-Token");
+  header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
   header('Content-Type: application/json');
 
   // 檢查 jwtToken
