@@ -25,9 +25,9 @@ DROP TABLE IF EXISTS `announcements`;
 CREATE TABLE `announcements` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `content` text NOT NULL,
-  `startedAt` date NOT NULL DEFAULT current_timestamp(),
-  `endAt` date DEFAULT NULL,
-  `createdAt` date NOT NULL DEFAULT current_timestamp(),
+  `startedAt` datetime NOT NULL DEFAULT current_timestamp(),
+  `endAt` datetime DEFAULT NULL,
+  `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
