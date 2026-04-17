@@ -18,7 +18,7 @@ export async function loadComments(page = 1, reload = true) {
 		}
 
 		if (reload) commentsEl.innerHTML = ''
-
+    store.container.querySelector('.counts').firstChild.textContent = `Comments (${data.data.length})`
 		for (const comment of data.data) {
 			if (comment.username) {
 				const el = generateComment(
