@@ -18,12 +18,13 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_KEY }}
+          # 任一指令失敗即中止，避免在錯誤狀態下繼續執行
+          # 進入專案目錄並拉取最新程式碼
+          # 安裝前端套件並打包（npm ci 確保依照 lock 檔嚴格安裝）
+          script_stop: true
           script: |
-            # 進入專案目錄並拉取最新程式碼
             cd /var/www/html/tech-blog
             git pull origin master
-
-            # 安裝前端套件並打包（npm ci 確保依照 lock 檔嚴格安裝）
-            cd plugin/
+            cd plugin
             npm ci
             npx webpack --mode=production
