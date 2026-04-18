@@ -1,0 +1,29 @@
+name: Deploy to EC2
+
+# 當 master 分支有新的 push 時自動觸發部署
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to EC2
+        # 透過 SSH 連線到 EC2 執行部署腳本，憑證存放於 GitHub Secrets
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_KEY }}
+          script: |
+            # 進入專案目錄並拉取最新程式碼
+            cd /var/www/html/tech-blog
+            git pull origin master
+
+            # 安裝前端套件並打包（npm ci 確保依照 lock 檔嚴格安裝）
+            cd plugin/
+            npm ci
+            npx webpack --mode=production
