@@ -23,7 +23,7 @@ jobs:
           # 安裝前端套件並打包（npm ci 確保依照 lock 檔嚴格安裝）
           script_stop: true
           script: |
-            cd /var/www/html/tech-blog
+            cd /var/www/html/comment-board
             git pull origin master
             cd plugin
             npm ci
